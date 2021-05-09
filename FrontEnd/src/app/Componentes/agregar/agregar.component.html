@@ -1,0 +1,69 @@
+
+<div class="container">
+    <p>Agregar admi</p>
+    <div class="row">
+        <div class="col-sm-6">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input [(ngModel)]="admin.nombre" type="text" class="form-control" name="nombre">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Apellido</label>
+                    <input [(ngModel)]="admin.apellido" type="text" class="form-control" name="nombre">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre Usuario</label>
+                    <input [(ngModel)]="admin.nombreus" type="text" class="form-control" name="nombre">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Correo</label>
+                    <input [(ngModel)]="admin.correo" type="text" class="form-control" name="nombre">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <input [(ngModel)]="admin.password" type="text" class="form-control" name="nombre">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Confirmar constraseña</label>
+                    <input type="text" class="form-control" name="nombre">
+                </div>
+                
+                <button (click)="agregar()" class="btn btn-primary">Agregar</button>
+            </form>
+        </div>
+
+        <div class="col-sm-6">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">{{admin.nombre}}</label>                  
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{admin.apellido}}</label>                    
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{admin.nombreus}}</label>                  
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{admin.correo}}</label>                  
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">{{admin.password}}</label>                  
+                </div>
+
+                
+            </form>
+        </div>
+
+
+
+</div>
