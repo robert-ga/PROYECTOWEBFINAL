@@ -45,7 +45,7 @@ export class ModificarComponent implements OnInit {
       },
       err=>console.log(err)
     );
-    this.router.navigate(['/inicio']);
+    this.router.navigate(['/mostrar']);  //inicio
 
   }
 

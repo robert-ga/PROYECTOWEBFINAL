@@ -9,12 +9,14 @@ import { ModificarComponent } from './Componentes/modificar/modificar.component'
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { MostrarComponent } from './Componentes/mostrar/mostrar.component';
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
     AgregarComponent,
-    ModificarComponent
+    ModificarComponent,
+    MostrarComponent
   ],
   imports: [
     BrowserModule,

@@ -25,7 +25,7 @@ export class AgregarComponent implements OnInit {
   agregar(){
     //delete this.admin.id;
     this.ServAdminService.addAdmin(this.admin).subscribe();
-    this.router.navigate(['/inicio'])
+    this.router.navigate(['/mostrar']) //inicio
   }
 
 }
