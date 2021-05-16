@@ -1,15 +1,35 @@
 <div class="container">
-    <button routerLink="/add" type="button" class="btn btn-dark">Agregar</button>
-    <p>Lista de equipos</p>
-    <table class="table">
+    <!-- <div>
+        <button routerLink="/add" type="button" class="btn btn-dark">Agregar</button>
+    </div>
+    <div>
+        <button (click)="outLogin()" routerLink="/login" type="button" class="btn btn-dark">Cerrar Sesion</button>
+    </div>
+     -->
+     <ul class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Opciones
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a routerLink="/add" class="dropdown-item" href="#">Registrar Administrador</a></li>
+          <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
+          <li><hr class="dropdown-divider"></li>
+          <li><a (click)="outLogin()" class="dropdown-item" href="#">Cerrar Sesion</a></li>
+        </ul>
+    </ul>
+    
+    
+    <p>Lista de Administradores</p>
+    <table class="table table-striped table-dark">
         <thead>
-        <tr>
+        <tr class="table-dark">
             <th scope="col">id</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Nombre Usuario</th>
             <th scope="col">Correo</th>
-            <th scope="col">password</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -20,8 +40,10 @@
                 <td>{{admin.nombreus}}</td> 
                 <td>{{admin.correo}}</td>
                 <td>{{admin.password}}</td>  
-                <td><button (click)="modificar(admin.id)" type="button" class="btn btn-primary">EDITAR</button></td>
-                <td><button (click)="eliminar(admin.id)" type="button" class="btn btn-danger">Borrar</button></td>
+                <td>
+                    <button (click)="modificar(admin.id)" type="button" class="btn btn-primary">Editar</button>
+                    <button (click)="eliminar(admin.id)" type="button" class="btn btn-danger">Borrar</button>
+                </td>
             </tr>
         </tbody>
     </table>

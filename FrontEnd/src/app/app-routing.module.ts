@@ -1,3 +1,5 @@
+import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './Componentes/login/login.component';
 import { MostrarComponent } from './Componentes/mostrar/mostrar.component';
 import { ModificarComponent } from './Componentes/modificar/modificar.component';
 import { AgregarComponent } from './Componentes/agregar/agregar.component';
@@ -10,7 +12,8 @@ const routes: Routes = [  //asignamos las rutas
   {path:'inicio', component: InicioComponent},
   {path:'add', component: AgregarComponent},
   {path:'edit/:id', component: ModificarComponent},
-  {path:'mostrar', component: MostrarComponent},
+  {path:'mostrar', component: MostrarComponent, canActivate:[AuthGuard]},
+  {path:'login', component: LoginComponent},
 
 ];
 

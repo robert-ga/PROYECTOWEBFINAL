@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import{HttpClient} from '@angular/common/http';
+import { identifierModuleUrl } from '@angular/compiler';
 
 
 @Injectable({
@@ -33,13 +34,20 @@ export class ServAdminService {
   editAdmin(id:string, admin:Admin){
     return this.http.put(this.url+'/'+id, admin);
   }
+
+
+  
+
+  
+
+  
 }
 
 export interface Admin{
   id:string;
   nombre?:string;
   apellido?:string;
-  nombreus?:string;
+  nombreus:string;
   correo?:string;
-  password?:string;
+  password:string;
 }

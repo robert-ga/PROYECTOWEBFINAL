@@ -1,10 +1,12 @@
 const router=require('express').Router()
 const { Router } = require('express')
 const conexion=require('./config/conexion') //trameos la conexion
+const jwt=require('jsonwebtoken');
+const bcryptjs=require('bcryptjs')
 
 //--------asignamos todas las rutas-----------//
 
-//get
+//get todos los admins
 router.get('/', (req, res)=> {
     let sql='SELECT * FROM admin'
     conexion.query(sql, (err, rows, fields)=> {
@@ -12,14 +14,17 @@ router.get('/', (req, res)=> {
             console.log(err)
         }
         else{
-            res.json(rows)
-        }
-        
-
+            // console.log(rows.length)
+            //console.log(rows[3].password)
+            for(let i=0;i<rows.length;i++){
+                rows[i].password=Buffer.from(rows[i].password, 'base64').toString('binary')
+            }                            
+            res.json(rows)          
+        }       
     })
 })
 
-//get un equipo
+//get un admin
 router.get('/:id', (req, res)=> {
     const {id}=req.params
     let sql='SELECT * FROM admin WHERE id = ?'
@@ -28,15 +33,18 @@ router.get('/:id', (req, res)=> {
             console.log("No se pudo recuperar los datos de los usuarios"+err)
         }
         else{
+            rows[0].password=Buffer.from(rows[0].password, 'base64').toString('binary')
             res.json(rows)
         }       
     })
 })
 
 //agregar
-router.post('/', (req, res)=> {
+router.post('/', async(req, res)=> {
     const {nombre, apellido, nombreus, correo, password}=req.body
-    let sql=`INSERT INTO admin(nombre, apellido, nombreus, correo, password) values('${nombre}','${apellido}','${nombreus}','${correo}','${password}')`
+    //let passhash=await bcryptjs.hash(password,8)
+    let passhash= Buffer.from(password, 'binary').toString('base64')
+    let sql=`INSERT INTO admin(nombre, apellido, nombreus, correo, password) values('${nombre}','${apellido}','${nombreus}','${correo}','${passhash}')`
     conexion.query(sql,(err, rows, fields)=> {
         if (err) {
             console.log("no se pudo registrar al usuario "+err)
@@ -61,16 +69,29 @@ router.delete('/:id', (req, res)=> {
     })
 })
 
+router.delete('/', (req, res)=> {
+    let sql=`TRUNCATE TABLE admin`
+    conexion.query(sql,(err, rows, fields)=> {
+        if (err) {
+            console.log("No se pudo eliminar los administradores"+err)
+        }
+        else{
+            res.json({status:'Registro de administradores borrados!'})
+        }       
+    })
+})
+
 //actualizar
 router.put('/:id', (req, res)=> {
     const {id}=req.params
     const {nombre, apellido, nombreus, correo, password}=req.body
+    let passhash= Buffer.from(password, 'binary').toString('base64')
     let sql=`UPDATE admin set 
             nombre='${nombre}',
             apellido='${apellido}',
             nombreus='${nombreus}',
             correo='${correo}',
-            password='${password}'
+            password='${passhash}'
             WHERE id = '${id}'`
     conexion.query(sql,(err, rows, fields)=> {
         if (err) {
@@ -82,6 +103,27 @@ router.put('/:id', (req, res)=> {
     })
 })
 
-
+//login
+router.post('/singin', (req, res)=>{
+    const {nombreus,password}=req.body
+    let passhash= Buffer.from(password, 'binary').toString('base64')
+    console.log(passhash)
+    conexion.query('SELECT * FROM admin WHERE nombreus = ? AND password = ?',[nombreus,passhash],
+    (err, rows, fields)=>{
+        if (err) {
+            console.log("no se pudo iniciar "+err)
+        }
+        else{   
+            if(rows.length>0){     
+                let data=JSON.stringify(rows[0]);
+                const token=jwt.sign(data,'stil');
+                res.json({token})
+            }
+            else{
+                res.json("Nombre usuario o Passowrd Incorrectos!")
+            }
+        }   
+    })
+})
 
 module.exports=router
