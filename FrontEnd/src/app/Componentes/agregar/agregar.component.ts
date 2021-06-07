@@ -52,29 +52,34 @@ export class AgregarComponent implements OnInit {
         res=>{
           let valores=JSON.stringify(res)
           let cadena=JSON.parse(valores)
-          console.log(cadena[0])
+          let val=false
+          console.log('esss',cadena[2].nombreus)
           for(let i=0;i<cadena.length;i++){
-            if(cadena[i].nombreus==this.admin.nombreus&&cadena[i].correo==this.admin.correo){
+            if(cadena[i].nombreus==this.admin.nombreus||cadena[i].correo==this.admin.correo){
               Swal.fire({
                 icon: 'error',
-                title: 'El nombre de usuario y el correo ya existen',
+                title: 'El nombre de usuario o el correo ya existen',
                 showConfirmButton: false,
                 timer: 2000
               }) 
+              val=true
               break
             }
-            else{
-              //delete this.admin.id;
-              this.ServAdminService.addAdmin(this.admin).subscribe();
-              Swal.fire({
-                icon: 'success',
-                title: 'Registro realizado',
-                showConfirmButton: false,
-                timer: 3000
-              }) 
-              this.router.navigate(['/mostrar']) //inicio   
-            }
+          }//
+          if(val!=true){
+            //delete this.admin.id;
+            this.ServAdminService.addAdmin(this.admin).subscribe();
+            Swal.fire({
+              icon: 'success',
+              title: 'Registro realizado',
+              showConfirmButton: false,
+              timer: 3000
+            }) 
+            this.router.navigate(['/mostrar']) //inicio   
+
+
           }
+
         }) 
     }
     else{

@@ -1,3 +1,8 @@
+import { ModificarHorarioComponent } from './modificar-horario/modificar-horario.component';
+import { ModificarRutaComponent } from './modificar-ruta/modificar-ruta.component';
+import { RegistroHorarioComponent } from './registro-horario/registro-horario.component';
+import { MostrarRutasComponent } from './mostrar-rutas/mostrar-rutas.component';
+import { RegistrarRutaComponent } from './registrar-ruta/registrar-ruta.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './Componentes/login/login.component';
 import { MostrarComponent } from './Componentes/mostrar/mostrar.component';
@@ -6,6 +11,7 @@ import { AgregarComponent } from './Componentes/agregar/agregar.component';
 import { InicioComponent } from './Componentes/inicio/inicio.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MostrarHorarioComponent } from './mostrar-horario/mostrar-horario.component';
 
 const routes: Routes = [  //asignamos las rutas
   {path:'', redirectTo:'/inicio', pathMatch:'full'},
@@ -14,6 +20,12 @@ const routes: Routes = [  //asignamos las rutas
   {path:'edit/:id', component: ModificarComponent},
   {path:'mostrar', component: MostrarComponent, canActivate:[AuthGuard]},
   {path:'login', component: LoginComponent},
+  {path:"Registrar_Ruta", component:RegistrarRutaComponent},
+  {path:"Mostrar_Rutas", component:MostrarRutasComponent},
+  {path:"Registrar_Horario", component:RegistroHorarioComponent},
+  {path:"Mostrar_Horario", component:MostrarHorarioComponent},
+  {path:"Mostrar_Rutas/Modificar_Ruta/:id",component:ModificarRutaComponent},
+  {path:"Mostrar_Horario/Modificar_Horario/:id", component:ModificarHorarioComponent}
 
 ];
 

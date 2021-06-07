@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         }
         else{
           var cont=localStorage.getItem('ver')!
-          console.log('ess'+cont.length)
+          // console.log('ess'+cont.length)
           if(cont.length>3){
             Swal.fire({
               icon: 'error',

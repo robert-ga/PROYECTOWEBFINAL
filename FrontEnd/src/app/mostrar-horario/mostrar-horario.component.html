@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="form-group" id="be">
+        <label for="origen" class="form-control">Salidas:  </label>
+        <select id="origen" class="form-control" name="filterPost" [(ngModel)]="filterPost">
+            <option value="todos">todos</option>
+            <option value="lunes">lunes</option>
+            <option value="martes">martes</option>
+            <option value="miercoles">miercoles</option>
+            <option value="jueves">jueves</option>
+            <option value="viernes">viernes</option>
+            <option value="sabado">sabado</option>
+            <option value="domingo">domingo</option>         
+        </select>
+    </div>
+    <div>
+        <button type="button" class="btn btn-dark" routerLink="/Registrar_Horario">Registrar</button>
+
+    </div>
+    <div>
+        <h1>Buses Registrados</h1>
+        <table class="table">
+            <thead class="thead-dark" id="cabe">
+                <tr>
+                    <th scope="col">Dia</th>
+
+                    <th scope="col">Origen</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Nombre Bus</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Precio Bs</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody class="thead-dark" id="cabe">
+                <tr *ngFor="let buses of BusListas | filtercalendario:filterPost">
+                    <td>{{buses.dia}}</td>
+                    <td>{{buses.origenbus}}</td>
+                    <td>{{buses.destinobus}}</td>
+                    <td>{{buses.hora}}</td>
+                    <td>{{buses.nombrebus}}</td>
+                    <td>{{buses.tipobus}}</td>
+                    <td>{{buses.precio}}</td>
+                    <td>
+                        <button (click)="modificar(buses.id_bus)" type="button" class="btn btn-primary">Editar</button>
+                    </td>
+                    <td>
+                        <button (click)="eliminar(buses.id_bus)" type="button" class="btn btn-danger">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

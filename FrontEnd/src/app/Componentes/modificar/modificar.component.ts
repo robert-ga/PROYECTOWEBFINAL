@@ -41,7 +41,7 @@ export class ModificarComponent implements OnInit {
   }
   ngOnInit(): void {
     const id_e=<string>this.activeRoute.snapshot.params.id;//recuperamo id de app-routing.modules
-    console.log('id de entrada: '+id_e)
+    // console.log('id de entrada: '+id_e)
     if(id_e){
       this.ServAdminService.getAdmin(id_e).subscribe(
         res=>{

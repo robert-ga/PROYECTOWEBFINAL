@@ -12,6 +12,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MostrarComponent } from './Componentes/mostrar/mostrar.component';
 import { LoginComponent } from './Componentes/login/login.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { ModificarHorarioComponent } from './modificar-horario/modificar-horario.component';
+import { ModificarRutaComponent } from './modificar-ruta/modificar-ruta.component';
+import { MostrarHorarioComponent } from './mostrar-horario/mostrar-horario.component';
+import { MostrarRutasComponent } from './mostrar-rutas/mostrar-rutas.component';
+import { RegistrarRutaComponent } from './registrar-ruta/registrar-ruta.component';
+import { RegistroHorarioComponent } from './registro-horario/registro-horario.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FiltercalendarioPipe } from './pipes/filtercalendario.pipe';
+import { FilterdestinosPipe } from './pipes/filterdestinos.pipe';
 
 
 @NgModule({
@@ -21,7 +30,16 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     AgregarComponent,
     ModificarComponent,
     MostrarComponent,
-    LoginComponent
+    LoginComponent,
+    ModificarHorarioComponent,
+    ModificarRutaComponent,
+    MostrarHorarioComponent,
+    MostrarRutasComponent,
+    RegistrarRutaComponent,
+    RegistroHorarioComponent,
+    FilterPipe,
+    FiltercalendarioPipe,
+    FilterdestinosPipe
   ],
   imports: [
     BrowserModule,

@@ -35,10 +35,9 @@ export class ServAdminService {
     return this.http.put(this.url+'/'+id, admin);
   }
 
-
-  
-
-  
+  enviarCorreo(datos:any){
+    return this.http.post(this.url+'/send-email', datos);
+  }
 
   
 }

@@ -1,8 +1,9 @@
 const router=require('express').Router()
-const { Router } = require('express')
+const { Router, text } = require('express')
 const conexion=require('./config/conexion') //trameos la conexion
 const jwt=require('jsonwebtoken');
 const bcryptjs=require('bcryptjs')
+const nodemailer =require('nodemailer')
 
 //--------asignamos todas las rutas-----------//
 
@@ -16,9 +17,9 @@ router.get('/', (req, res)=> {
         else{
             // console.log(rows.length)
             //console.log(rows[3].password)
-            for(let i=0;i<rows.length;i++){
-                rows[i].password=Buffer.from(rows[i].password, 'base64').toString('binary')
-            }                            
+            // for(let i=0;i<rows.length;i++){
+            //     rows[i].password=Buffer.from(rows[i].password, 'base64').toString('binary')
+            // }                            
             res.json(rows)          
         }       
     })
@@ -35,6 +36,8 @@ router.get('/:id', (req, res)=> {
         else{
             rows[0].password=Buffer.from(rows[0].password, 'base64').toString('binary')
             res.json(rows)
+           
+            
         }       
     })
 })
@@ -107,7 +110,7 @@ router.put('/:id', (req, res)=> {
 router.post('/singin', (req, res)=>{
     const {nombreus,password}=req.body
     let passhash= Buffer.from(password, 'binary').toString('base64')
-    console.log(passhash)
+    // console.log(passhash)
     conexion.query('SELECT * FROM admin WHERE nombreus = ? AND password = ?',[nombreus,passhash],
     (err, rows, fields)=>{
         if (err) {
@@ -124,6 +127,41 @@ router.post('/singin', (req, res)=>{
             }
         }   
     })
+})
+
+router.post('/send-email', async(req,res)=>{
+    const {nombre, apellido, telefono,cantidad, correo}=req.body
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, // true for 465, false for other ports
+        auth: {
+          user: 'jos123limbert@gmail.com', // generated ethereal user
+          pass: 'smnyfqmbrkuvklpr', // generated ethereal password
+        },
+      });
+
+      transporter.verify().then(()=>{
+          console.log("Correo enviado correctamente")
+      })
+
+      const info=await transporter.sendMail({
+          from:'"Remitente: " <jos123limbert@gmail.com>',
+          to:correo, //correo a quien va dirigido
+          subject: 'Factura compra de boleto',  
+          text: `Gracias por comprar! :)
+                Nombre: ${nombre} ${apellido} 
+                Telefono: ${telefono}
+                Nro Boletos comprados: ${cantidad}`,
+        attachments: [{
+            filename: 'file.pdf',
+            path: 'C:/Users/Jose Limbert/Downloads/Flores Suarez Jose Limbert Examen C7391-1.pdf',
+            contentType: 'application/pdf'
+        }]
+      })
+      console.log("mensaje enviado", info.messageId)
+      
+    
 })
 
 module.exports=router

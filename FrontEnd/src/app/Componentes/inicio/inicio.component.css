@@ -1,11 +1,10 @@
-div{
+#cabeceraImg{
     background-color: black;
-    background-image: url('https://www.iveco.com/ivecobus/es-es/PublishingImages/2017Responsive/IVECOBUS_web_banner_Evadys_1440x400.jpg');
 }
 h1{
     text-align: center;
     color: rgba(229, 241, 239, 0.979);
-    font-size: 100px;
+    font-size: 50px;
     text-transform: uppercase;
     margin-bottom: 20px;
 }

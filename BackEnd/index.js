@@ -14,6 +14,13 @@ app.set('port', port)
 //rutas
 app.use('/api', require('./admin'))//rutas
 
+
+//rutas
+app.use('/apis/rutas', require('./rutas'))
+
+//buses
+app.use('/apis/buses', require('./buses'))
+
 //iniciar express
 app.listen(app.get('port'), (error)=>{
     if(error){
