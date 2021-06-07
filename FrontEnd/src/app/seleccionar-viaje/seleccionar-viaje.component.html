@@ -1,0 +1,37 @@
+<div class="container">
+    <div>
+        <h3>Salida de </h3>
+
+
+        <table class="table">
+            <thead class="thead-dark" id="cabe">
+                <tr>
+                    <th scope="col">Dia</th>
+
+                    <th scope="col">Origen</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Nombre Bus</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Precio Bs</th>
+                    <th scope="col">Opcion</th>
+                </tr>
+            </thead>
+            <tbody class="thead-dark" id="cabe">
+                <tr *ngFor="let buses of BusListas">
+                    <td>{{buses.dia}}</td>
+                    <td>{{buses.origenbus}}</td>
+                    <td>{{buses.destinobus}}</td>
+                    <td>{{buses.hora}}</td>
+                    <td>{{buses.nombrebus}}</td>
+                    <td>{{buses.tipobus}}</td>
+                    <td>{{buses.precio}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">Seleccionar</button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

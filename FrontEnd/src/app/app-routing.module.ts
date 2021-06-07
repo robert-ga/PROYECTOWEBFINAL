@@ -12,6 +12,7 @@ import { InicioComponent } from './Componentes/inicio/inicio.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MostrarHorarioComponent } from './mostrar-horario/mostrar-horario.component';
+import { SeleccionarViajeComponent } from './seleccionar-viaje/seleccionar-viaje.component';
 
 const routes: Routes = [  //asignamos las rutas
   {path:'', redirectTo:'/inicio', pathMatch:'full'},
@@ -25,7 +26,8 @@ const routes: Routes = [  //asignamos las rutas
   {path:"Registrar_Horario", component:RegistroHorarioComponent},
   {path:"Mostrar_Horario", component:MostrarHorarioComponent},
   {path:"Mostrar_Rutas/Modificar_Ruta/:id",component:ModificarRutaComponent},
-  {path:"Mostrar_Horario/Modificar_Horario/:id", component:ModificarHorarioComponent}
+  {path:"Mostrar_Horario/Modificar_Horario/:id", component:ModificarHorarioComponent},
+  {path:"Seleccionar_viaje", component:SeleccionarViajeComponent}
 
 ];
 

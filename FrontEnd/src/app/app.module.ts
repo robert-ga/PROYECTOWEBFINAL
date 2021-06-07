@@ -21,6 +21,8 @@ import { RegistroHorarioComponent } from './registro-horario/registro-horario.co
 import { FilterPipe } from './pipes/filter.pipe';
 import { FiltercalendarioPipe } from './pipes/filtercalendario.pipe';
 import { FilterdestinosPipe } from './pipes/filterdestinos.pipe';
+import { FilterclientdestinosPipe } from './pipes/filterclientdestinos.pipe';
+import { SeleccionarViajeComponent } from './seleccionar-viaje/seleccionar-viaje.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { FilterdestinosPipe } from './pipes/filterdestinos.pipe';
     RegistroHorarioComponent,
     FilterPipe,
     FiltercalendarioPipe,
-    FilterdestinosPipe
+    FilterdestinosPipe,
+    FilterclientdestinosPipe,
+    SeleccionarViajeComponent
   ],
   imports: [
     BrowserModule,
